@@ -35,7 +35,7 @@ namespace PHPEveCentral\XMLUtils\evec_api\marketstat\type;
 
 
 
-class sell
+class sell extends base
 {
 
 }

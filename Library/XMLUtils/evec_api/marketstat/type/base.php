@@ -31,11 +31,19 @@
 
 
 
-namespace PHPEveCentral;
+namespace PHPEveCentral\XMLUtils\evec_api\marketstat\type;
 
 
 
-class RequestBuilder
+class base
 {
-
+	// Public:
+	
+	public $volume;
+	public $avg;
+	public $max;
+	public $min;
+	public $stddev;
+	public $median;
+	public $percentile;
 }

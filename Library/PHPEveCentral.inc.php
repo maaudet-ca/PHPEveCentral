@@ -35,7 +35,9 @@ namespace PHPEveCentral;
 
 
 
+define(__NAMESPACE__ . '\VERSION', '12.09');
 define(__NAMESPACE__ . '\LIBPATH', dirname(__FILE__) . DIRECTORY_SEPARATOR);
+define(__NAMESPACE__ . '\BASEURL', 'http://api.eve-central.com/api/');
 
 
 

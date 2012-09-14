@@ -37,5 +37,7 @@ namespace PHPEveCentral\XMLUtils\evec_api;
 
 class marketstat
 {
-
+	// Public:
+	
+	public $_content = array();
 }

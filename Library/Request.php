@@ -35,7 +35,63 @@ namespace PHPEveCentral;
 
 
 
-class Request
+abstract class Request
 {
+	// Public:
+	
+	public function __construct($url)
+	{
+		$this->_url = $url;
+	}
+	
+	public function Send()
+	{
+		$url = $this->_url;
+		$params = $this->BuildParams();
+		
+		$options = array(
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_HEADER         => false,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_ENCODING       => "",
+			CURLOPT_USERAGENT      => 'PHPEveCentral Library Version ' . \PHPNewEden\VERSION,
+			CURLOPT_AUTOREFERER    => true,
+			CURLOPT_CONNECTTIMEOUT => 120,
+			CURLOPT_TIMEOUT        => 120,
+			CURLOPT_MAXREDIRS      => 10,
+		);
+		
+		$ch = curl_init($url);
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		
+		if (curl_errno($ch) == 0)
+		{
+			return false;
+		}
+		
+		$header = curl_getinfo($ch);
+		
+		curl_close($ch);
+		
+		if ($header['http_code'] != 200)
+		{
+			return false;
+		}
 
+		return $this->Parse($content);
+	}
+	
+	
+	
+	// Protected:
+	
+	abstract protected function BuildParams();
+	abstract protected function Parse();
+	
+
+	
+	// Private:
+	
+	private $_url;
 }

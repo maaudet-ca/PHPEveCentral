@@ -43,6 +43,11 @@ class MarketStat extends \PHPEveCentral\Request
 {
 	// Public:
 	
+	public function __construct()
+	{
+		parent::__construct(\PHPNewEden\BASEURL . 'marketstat');
+	}
+	
 	public function __get($name)
 	{
 		switch ($name)
@@ -107,6 +112,51 @@ class MarketStat extends \PHPEveCentral\Request
 		$this->_use_system = $use_system;
 		
 		return $this;
+	}
+	
+	
+	
+	// Protected:
+	
+	protected function BuildParams()
+	{
+		$params = array();
+		
+		if ($_hours != 24 && $this->_hours > 0)
+		{
+			$params['hours'] = $this->_hours;
+		}
+		
+		if (count($this->_typeid) > 0)
+		{
+			$params['typeid'] = $this->_typeid;
+		}
+		else
+		{
+			throw new Exception('The typeid parameter is required.');
+		}
+		
+		if ($this->_minimum_quantity > 0)
+		{
+			$params['minQ'] = $this->_minimum_quantity;
+		}
+		
+		if (count($this->_region_limit) > 0)
+		{
+			$params['regionlimit'] = $this->_region_limit;
+		}
+		
+		if ($this->_use_system)
+		{
+			$params['usesystem'] = $this->_use_system;
+		}
+		
+		return $params;
+	}
+	
+	protected function Parse($content)
+	{
+		return new \PHPEveCentral\XMLBuilders\MarketStat($content);
 	}
 	
 	

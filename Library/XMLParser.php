@@ -4,7 +4,7 @@
 
 /**
  *
- * Copyright (c) 2012 Marc AndrÃ© "Manhim" Audet <root@manhim.net>. All rights reserved.
+ * Copyright (c) 2012 Marc André "Manhim" Audet <root@manhim.net>. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are
  * permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL MARC ANDRÃ‰ "MANHIM" AUDET BE LIABLE FOR ANY
+ * DISCLAIMED. IN NO EVENT SHALL MARC ANDRÉ "MANHIM" AUDET BE LIABLE FOR ANY
  * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
  * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
  * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -31,16 +31,16 @@
 
 
 
-namespace PHPEveCentral\XMLUtils;
+namespace PHPEveCentral;
 
 
 
-class evec_api
+class XMLParser
 {
 	// Public:
 	
-	public $_attr_method;
-	public $_attr_version;
-
-	public $_content = array();
+	public function __construct($xml)
+	{
+		
+	}
 }
