@@ -35,7 +35,7 @@ namespace PHPEveCentral\Results;
 
 
 
-class MarketStats extends \PHPEveCentral\Result
+class MarketStat extends \PHPEveCentral\Result
 {
 
 }

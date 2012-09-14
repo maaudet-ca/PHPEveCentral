@@ -35,7 +35,7 @@ namespace PHPEveCentral\Requests;
 
 
 
-class MarketStats extends \PHPEveCentral\Request
+class MarketStat extends \PHPEveCentral\Request
 {
 
 }
