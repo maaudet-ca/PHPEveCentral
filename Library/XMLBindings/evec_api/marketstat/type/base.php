@@ -31,16 +31,19 @@
 
 
 
-namespace PHPEveCentral\XMLUtils;
+namespace PHPEveCentral\XMLBindings\evec_api\marketstat\type;
 
 
 
-class evec_api
+class base
 {
 	// Public:
 	
-	public $_attr_method;
-	public $_attr_version;
-
-	public $_content = array();
+	public $volume;
+	public $avg;
+	public $max;
+	public $min;
+	public $stddev;
+	public $median;
+	public $percentile;
 }

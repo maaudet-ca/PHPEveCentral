@@ -31,11 +31,13 @@
 
 
 
-namespace PHPEveCentral\XMLUtils\evec_api\quicklook;
+namespace PHPEveCentral\XMLBindings\evec_api;
 
 
 
-class order
+class marketstat
 {
-
+	// Public:
+	
+	public $_content = array();
 }

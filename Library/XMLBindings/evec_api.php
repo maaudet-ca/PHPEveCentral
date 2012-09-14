@@ -31,11 +31,16 @@
 
 
 
-namespace PHPEveCentral\XMLUtils\evec_api\marketstat\type;
+namespace PHPEveCentral\XMLBindings;
 
 
 
-class all extends base
+class evec_api
 {
+	// Public:
+	
+	public $_attr_method;
+	public $_attr_version;
 
+	public $_content;
 }

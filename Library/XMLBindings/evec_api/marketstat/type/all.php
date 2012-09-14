@@ -31,11 +31,11 @@
 
 
 
-namespace PHPEveCentral
+namespace PHPEveCentral\XMLBindings\evec_api\marketstat\type;
 
 
 
-class XMLUtils
+class all extends base
 {
 
 }

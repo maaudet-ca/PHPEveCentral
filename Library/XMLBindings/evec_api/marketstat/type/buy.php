@@ -31,11 +31,11 @@
 
 
 
-namespace PHPEveCentral\XMLUtils\evec_api\quicklook;
+namespace PHPEveCentral\XMLBindings\evec_api\marketstat\type;
 
 
 
-class sell_orders
+class buy extends base
 {
 
 }

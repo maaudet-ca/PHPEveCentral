@@ -31,19 +31,11 @@
 
 
 
-namespace PHPEveCentral\XMLUtils\evec_api\marketstat\type;
+namespace PHPEveCentral\XMLBindings\evec_api\quicklook;
 
 
 
-class base
+class sell_orders
 {
-	// Public:
-	
-	public $volume;
-	public $avg;
-	public $max;
-	public $min;
-	public $stddev;
-	public $median;
-	public $percentile;
+
 }

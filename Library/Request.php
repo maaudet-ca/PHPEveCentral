@@ -49,6 +49,25 @@ abstract class Request
 		$url = $this->_url;
 		$params = $this->BuildParams();
 		
+		$query_string = array();
+		
+		foreach ($params as $k => $p)
+		{
+			if (!is_array($p))
+			{
+				$query_string[] = $k . '=' . $p;
+			}
+			else
+			{
+				foreach ($p as $v)
+				{
+					$query_string[] = $k . '=' . $v;
+				}
+			}
+		}
+		
+		$query = '?' . implode('&', $query_string);
+		
 		$options = array(
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_HEADER         => false,
@@ -61,7 +80,7 @@ abstract class Request
 			CURLOPT_MAXREDIRS      => 10,
 		);
 		
-		$ch = curl_init($url);
+		$ch = curl_init($url . $query);
 		curl_setopt_array($ch, $options);
 		$content = curl_exec($ch);
 		

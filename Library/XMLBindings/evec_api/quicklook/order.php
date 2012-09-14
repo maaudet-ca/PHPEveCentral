@@ -31,21 +31,11 @@
 
 
 
-namespace PHPEveCentral\XMLUtils\evec_api\marketstat;
+namespace PHPEveCentral\XMLBindings\evec_api\quicklook;
 
 
 
-// TODO: Add docs to tell the types of the vars
-
-
-
-class type
+class order
 {
-	// Public:
-	
-	public $_attr_id;
-	
-	public $buy;
-	public $sell;
-	public $all;
+
 }

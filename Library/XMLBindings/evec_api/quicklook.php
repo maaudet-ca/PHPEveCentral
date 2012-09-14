@@ -31,11 +31,11 @@
 
 
 
-namespace PHPEveCentral\XMLUtils\evec_api\marketstat\type;
+namespace PHPEveCentral\XMLBindings\evec_api;
 
 
 
-class sell extends base
+class quicklook
 {
 
 }
