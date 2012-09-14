@@ -42,5 +42,18 @@ class MarketStat extends \PHPEveCentral\XMLParser
 	public function __construct($content)
 	{
 		parent::__construct($content);
+		
+		$this->_Parse();
+	}
+	
+	public $evec_api;
+	
+	
+	
+	// Private:
+	
+	private function _Parse()
+	{
+		
 	}
 }

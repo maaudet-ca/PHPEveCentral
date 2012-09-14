@@ -35,12 +35,18 @@ namespace PHPEveCentral;
 
 
 
-class XMLParser
+abstract class XMLParser
 {
 	// Public:
 	
-	public function __construct($xml)
+	public function __construct($content)
 	{
-		
+		$this->_sxe = new \SimpleXMLElement($content);
 	}
+	
+	
+	
+	// Protected:
+	
+	protected $_sxe;
 }

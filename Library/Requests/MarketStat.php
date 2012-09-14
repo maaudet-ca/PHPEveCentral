@@ -45,7 +45,7 @@ class MarketStat extends \PHPEveCentral\Request
 	
 	public function __construct()
 	{
-		parent::__construct(\PHPNewEden\BASEURL . 'marketstat');
+		parent::__construct(\PHPEveCentral\BASEURL . 'marketstat');
 	}
 	
 	public function __get($name)
@@ -122,7 +122,7 @@ class MarketStat extends \PHPEveCentral\Request
 	{
 		$params = array();
 		
-		if ($_hours != 24 && $this->_hours > 0)
+		if ($this->_hours != 24 && $this->_hours > 0)
 		{
 			$params['hours'] = $this->_hours;
 		}
@@ -156,7 +156,7 @@ class MarketStat extends \PHPEveCentral\Request
 	
 	protected function Parse($content)
 	{
-		return new \PHPEveCentral\XMLBuilders\MarketStat($content);
+		return new \PHPEveCentral\XMLParsers\MarketStat($content);
 	}
 	
 	

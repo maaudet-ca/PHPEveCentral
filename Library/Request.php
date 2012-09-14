@@ -54,7 +54,7 @@ abstract class Request
 			CURLOPT_HEADER         => false,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_ENCODING       => "",
-			CURLOPT_USERAGENT      => 'PHPEveCentral Library Version ' . \PHPNewEden\VERSION,
+			CURLOPT_USERAGENT      => 'PHPEveCentral Library Version ' . \PHPEveCentral\VERSION,
 			CURLOPT_AUTOREFERER    => true,
 			CURLOPT_CONNECTTIMEOUT => 120,
 			CURLOPT_TIMEOUT        => 120,
@@ -65,7 +65,7 @@ abstract class Request
 		curl_setopt_array($ch, $options);
 		$content = curl_exec($ch);
 		
-		if (curl_errno($ch) == 0)
+		if (curl_errno($ch) != 0)
 		{
 			return false;
 		}
@@ -87,7 +87,7 @@ abstract class Request
 	// Protected:
 	
 	abstract protected function BuildParams();
-	abstract protected function Parse();
+	abstract protected function Parse($content);
 	
 
 	
