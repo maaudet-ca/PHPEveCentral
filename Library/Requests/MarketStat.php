@@ -35,7 +35,88 @@ namespace PHPEveCentral\Requests;
 
 
 
+// TODO: Add properties and aliases docs
+
+
+
 class MarketStat extends \PHPEveCentral\Request
 {
-
+	// Public:
+	
+	public function __get($name)
+	{
+		switch ($name)
+		{
+			case 'Hours': case 'hours':
+				return $this->_hours;
+			case 'TypeId': case 'typeid':
+				return $this->_typeid;
+			case 'MinimumQuantity': case 'minimum_quantity': case 'minQ':
+				return $this->_minimum_quantity;
+			case 'RegionLimit': case 'region_limit': case 'regionlimit':
+				return $this->_region_limit;
+			case 'UseSystem': case 'use_system': case 'usesystem':
+				return $this->_use_system;
+		}
+	}
+	
+	public function &SetHours($hours)
+	{
+		$this->_hours = $hours;
+		
+		return $this;
+	}
+	
+	public function &AddTypeId($typeid)
+	{
+		$this->_typeid[] = $typeid;
+		
+		return $this;
+	}
+	
+	public function &RemoveTypeId($typeid)
+	{
+		\PHPEveCentral\Utils::RemoveArrayValue($this->_typeid, $typeid);
+		
+		return $this;
+	}
+	
+	public function &SetMinimumQuantity($mininum_quantity)
+	{
+		$this->_minimum_quantity = $minimum_quantity;
+		
+		return $this;
+	}
+	
+	public function &AddRegionLimit($region_limit)
+	{
+		$this->_region_limit[] = $region_limit;
+		
+		return $this;
+	}
+	
+	public function &RemoveRegionLimit($region_limit)
+	{
+		\PHPEveCentral\Utils::RemoveArrayValue($this->_region_limit, $region_limit);
+		
+		return $this;
+	}
+	
+	public function &SetUseSystem($use_system)
+	{
+		$this->_use_system = $use_system;
+		
+		return $this;
+	}
+	
+	
+	
+	// Private:
+	
+	private $_hours = 24; // hours
+	private $_typeid = array(); // typeid
+	private $_minimum_quantity = null; // minQ
+	private $_region_limit = array(); // regionlimit
+	private $_use_system = null; // usesystem
+	
 }
