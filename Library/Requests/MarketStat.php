@@ -156,7 +156,8 @@ class MarketStat extends \PHPEveCentral\Request
 	
 	protected function Parse($content)
 	{
-		return new \PHPEveCentral\XMLParsers\MarketStat($content);
+		$bindings = new \PHPEveCentral\XMLParsers\MarketStat($content);
+		return new \PHPEveCentral\Results\MarketStat($bindings);
 	}
 	
 	

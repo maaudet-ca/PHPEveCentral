@@ -37,5 +37,8 @@ namespace PHPEveCentral\Results;
 
 class MarketStat extends \PHPEveCentral\Result
 {
-
+	public function __construct($bindings)
+	{
+	
+	}
 }
