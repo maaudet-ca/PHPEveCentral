@@ -37,5 +37,14 @@ namespace PHPEveCentral\XMLBindings\evec_api;
 
 class quicklook
 {
-
+	// Public:
+	
+	public $item;
+	public $itemname;
+	public $regions;
+	public $hours;
+	public $minqty;
+	
+	public $sell_orders;
+	public $buy_orders;
 }

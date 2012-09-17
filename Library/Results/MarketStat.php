@@ -37,8 +37,71 @@ namespace PHPEveCentral\Results;
 
 class MarketStat extends \PHPEveCentral\Result
 {
+	// Public:
+
 	public function __construct($bindings)
 	{
+		$this->_bindings = $bindings;
 	
+		foreach ($bindings->evec_api->_content->_content as $type)
+		{
+			$this->_types[$type->_attr_id] = new \stdClass;
+			
+			$this->_types[$type->_attr_id]->buy = new \stdClass;
+			$this->_types[$type->_attr_id]->buy->volume = (double) $type->buy->volume;
+			$this->_types[$type->_attr_id]->buy->avg = (double) $type->buy->avg;
+			$this->_types[$type->_attr_id]->buy->min = (double) $type->buy->min;
+			$this->_types[$type->_attr_id]->buy->max = (double) $type->buy->max;
+			$this->_types[$type->_attr_id]->buy->stddev = (double) $type->buy->stddev;
+			$this->_types[$type->_attr_id]->buy->median = (double) $type->buy->median;
+			$this->_types[$type->_attr_id]->buy->percentile = (double) $type->buy->percentile;
+			
+			$this->_types[$type->_attr_id]->sell = new \stdClass;
+			$this->_types[$type->_attr_id]->sell->volume = (double) $type->sell->volume;
+			$this->_types[$type->_attr_id]->sell->avg = (double) $type->sell->avg;
+			$this->_types[$type->_attr_id]->sell->min = (double) $type->sell->min;
+			$this->_types[$type->_attr_id]->sell->max = (double) $type->sell->max;
+			$this->_types[$type->_attr_id]->sell->stddev = (double) $type->sell->stddev;
+			$this->_types[$type->_attr_id]->sell->median = (double) $type->sell->median;
+			$this->_types[$type->_attr_id]->sell->percentile = (double) $type->sell->percentile;
+			
+			$this->_types[$type->_attr_id]->all = new \stdClass;
+			$this->_types[$type->_attr_id]->all->volume = (double) $type->all->volume;
+			$this->_types[$type->_attr_id]->all->avg = (double) $type->all->avg;
+			$this->_types[$type->_attr_id]->all->min = (double) $type->all->min;
+			$this->_types[$type->_attr_id]->all->max = (double) $type->all->max;
+			$this->_types[$type->_attr_id]->all->stddev = (double) $type->all->stddev;
+			$this->_types[$type->_attr_id]->all->median = (double) $type->all->median;
+			$this->_types[$type->_attr_id]->all->percentile = (double) $type->all->percentile;
+		}
 	}
+	
+	public function GetType($type_id)
+	{
+		if ($this->_types[$type_id])
+		{
+			return $this->_types[$type_id];
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function GetAllTypes()
+	{
+		return $this->_types;
+	}
+	
+	public function GetBindings()
+	{
+		return $this->_bindings;
+	}
+	
+	
+	
+	// Private:
+	
+	private $_types;
+	private $_bindings;
 }

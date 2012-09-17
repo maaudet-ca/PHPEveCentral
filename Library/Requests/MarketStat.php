@@ -122,7 +122,7 @@ class MarketStat extends \PHPEveCentral\Request
 	{
 		$params = array();
 		
-		if ($this->_hours != 24 && $this->_hours > 0)
+		if ($this->_hours !== null)
 		{
 			$params['hours'] = $this->_hours;
 		}
@@ -133,10 +133,10 @@ class MarketStat extends \PHPEveCentral\Request
 		}
 		else
 		{
-			throw new Exception('The typeid parameter is required.');
+			throw new \Exception('The typeid parameter is required.');
 		}
 		
-		if ($this->_minimum_quantity > 0)
+		if ($this->_minimum_quantity !== null)
 		{
 			$params['minQ'] = $this->_minimum_quantity;
 		}
@@ -146,7 +146,7 @@ class MarketStat extends \PHPEveCentral\Request
 			$params['regionlimit'] = $this->_region_limit;
 		}
 		
-		if ($this->_use_system)
+		if ($this->_use_system !== null)
 		{
 			$params['usesystem'] = $this->_use_system;
 		}
@@ -156,15 +156,16 @@ class MarketStat extends \PHPEveCentral\Request
 	
 	protected function Parse($content)
 	{
-		$bindings = new \PHPEveCentral\XMLParsers\MarketStat($content);
-		return new \PHPEveCentral\Results\MarketStat($bindings);
+		return new \PHPEveCentral\Results\MarketStat(
+				new \PHPEveCentral\XMLParsers\MarketStat($content)
+			);
 	}
 	
 	
 	
 	// Private:
 	
-	private $_hours = 24; // hours
+	private $_hours = null; // hours
 	private $_typeid = array(); // typeid
 	private $_minimum_quantity = null; // minQ
 	private $_region_limit = array(); // regionlimit

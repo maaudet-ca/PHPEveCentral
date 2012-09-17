@@ -33,5 +33,39 @@
 
 class PHPEveCentral
 {
-
+	// Static:
+	
+	static private $__instance = null;
+	
+	static public function &GetInstance()
+	{
+		if (self::$__instance === null)
+		{
+			self::$__instance = new PHPEveCentral;
+		}
+		
+		return self::$__instance;
+	}
+	
+	
+	
+	// Public:
+	
+	public function MarketStat()
+	{
+		return new \PHPEveCentral\Requests\MarketStat();
+	}
+	
+	public function QuickLook()
+	{
+		return new \PHPEveCentral\Requests\QuickLook();
+	}
+	
+	
+	// Protected:
+	
+	protected function __construct()
+	{
+	
+	}
 }

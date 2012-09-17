@@ -37,5 +37,7 @@ namespace PHPEveCentral\XMLBindings\evec_api\quicklook;
 
 class sell_orders
 {
-
+	// Public:
+	
+	public $_content;
 }

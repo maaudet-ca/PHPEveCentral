@@ -37,5 +37,18 @@ namespace PHPEveCentral\XMLBindings\evec_api\quicklook;
 
 class order
 {
-
+	// Public:
+	
+	public $_attr_id;
+	
+	public $region;
+	public $station;
+	public $station_name;
+	public $security;
+	public $range;
+	public $price;
+	public $vol_remain;
+	public $expires;
+	public $reported_time;
+	
 }

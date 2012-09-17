@@ -37,5 +37,74 @@ namespace PHPEveCentral\Results;
 
 class QuickLook extends \PHPEveCentral\Result
 {
+	// Public:
+	
+	public function __construct($bindings)
+	{
+		$this->_bindings = $bindings;
+		
+		$quicklook = &$bindings->evec_api->_content;
+		
+		$this->_attributes = new \stdClass;
+		$this->_attributes->item = (double) $quicklook->item;
+		$this->_attributes->itemname = (string) $quicklook->itemname;
+		$this->_attributes->regions = $quicklook->regions;
+		$this->_attributes->hours = (int) $quicklook->hours;
+		$this->_attributes->minqty = (double) $quicklook->minqty;
 
+		foreach ($quicklook->sell_orders->_content as $o)
+		{
+			$order = new \stdClass;
+			
+			$order->region = (double) $o->region;
+			$order->station = (double) $o->station;
+			$order->station_name = (string) $o->station_name;
+			$order->security = (double) $o->security;
+			$order->range = (int) $o->range;
+			$order->price = (double) $o->price;
+			$order->vol_remain = (double) $o->vol_remain;
+			$order->min_volume = (double) $o->min_volume;
+			$order->expires = strtotime($o->expires . ' UTC');
+			$order->reported_time = strtotime(date('Y') . '-' . $o->reported_time . ' UTC');
+
+			$this->_sell_orders[$o->_attr_id] = $order;
+		}
+		
+		foreach ($quicklook->buy_orders->_content as $o)
+		{
+			$order = new \stdClass;
+			
+			$order->region = (double) $o->region;
+			$order->station = (double) $o->station;
+			$order->station_name = (string) $o->station_name;
+			$order->security = (double) $o->security;
+			$order->range = (int) $o->range;
+			$order->price = (double) $o->price;
+			$order->vol_remain = (double) $o->vol_remain;
+			$order->min_volume = (double) $o->min_volume;
+			$order->expires = strtotime($o->expires . ' UTC');
+			$order->reported_time = strtotime(date('Y') . '-' . $o->reported_time . ' UTC');
+
+			$this->_buy_orders[$o->_attr_id] = $order;
+		}
+	}
+	
+	public function GetAttributes()
+	{
+		return $this->_attributes;
+	}
+		
+	public function GetBindings()
+	{
+		return $this->_bindings;
+	}
+	
+	
+	
+	// Private:
+	
+	private $_attributes;
+	private $_sell_orders = array();
+	private $_buy_orders = array();
+	private $_bindings;
 }

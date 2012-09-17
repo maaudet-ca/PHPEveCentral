@@ -39,5 +39,5 @@ class marketstat
 {
 	// Public:
 	
-	public $_content = array();
+	public $_content;
 }

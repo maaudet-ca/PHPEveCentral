@@ -37,5 +37,95 @@ namespace PHPEveCentral\XMLParsers;
 
 class QuickLook extends \PHPEveCentral\XMLParser
 {
-
+	// Public:
+	
+	public function __construct($content)
+	{
+		parent::__construct($content);
+		
+		$this->_Bind();
+	}
+	
+	public $evec_api;
+	
+	
+	
+	// Private:
+	
+	private function _Bind()
+	{
+		$this->evec_api = new \PHPEveCentral\XMLBindings\evec_api();
+		
+		$this->evec_api->_attr_method = (string) $this->_sxe->attributes()->method;
+		$this->evec_api->_attr_version = (string) $this->_sxe->attributes()->version;
+		
+		$quicklook = new \PHPEveCentral\XMLBindings\evec_api\quicklook();
+		
+		$quicklook->item = (string) $this->_sxe->quicklook->item;
+		$quicklook->itemname = (string) $this->_sxe->quicklook->itemname;
+		$quicklook->regions = array();
+		
+		foreach ($this->_sxe->quicklook->regions->region as $region)
+		{
+			$quicklook->regions[] = (string) $region;
+		}
+		
+		$quicklook->hours = (string) $this->_sxe->quicklook->hours;
+		$quicklook->minqty = (string) $this->_sxe->quicklook->minqty;
+		
+		// Sell Orders
+		$quicklook->sell_orders = new \PHPEveCentral\XMLBindings\evec_api\quicklook\sell_orders();
+		
+		$orders = array();
+		foreach ($this->_sxe->quicklook->sell_orders->order as $o)
+		{
+			$order = new \PHPEveCentral\XMLBindings\evec_api\quicklook\order();
+			
+			$order->_attr_id = (string) $o->attributes()->id;
+			
+			$order->region = (string) $o->region;
+			$order->station = (string) $o->station;
+			$order->station_name = (string) $o->station_name;
+			$order->security = (string) $o->security;
+			$order->range = (string) $o->range;
+			$order->price = (string) $o->price;
+			$order->vol_remain = (string) $o->vol_remain;
+			$order->min_volume = (string) $o->min_volume;
+			$order->expires = (string) $o->expires;
+			$order->reported_time = (string) $o->reported_time;
+			
+			$orders[] = $order;
+		}
+		
+		$quicklook->sell_orders->_content = $orders;
+		
+		// Buy orders
+		$quicklook->buy_orders = new \PHPEveCentral\XMLBindings\evec_api\quicklook\buy_orders();
+		
+		$orders = array();
+		foreach ($this->_sxe->quicklook->buy_orders->order as $o)
+		{
+			$order = new \PHPEveCentral\XMLBindings\evec_api\quicklook\order();
+			
+			$order->_attr_id = (string) $o->attributes()->id;
+			
+			$order->region = (string) $o->region;
+			$order->station = (string) $o->station;
+			$order->station_name = (string) $o->station_name;
+			$order->security = (string) $o->security;
+			$order->range = (string) $o->range;
+			$order->price = (string) $o->price;
+			$order->vol_remain = (string) $o->vol_remain;
+			$order->min_volume = (string) $o->min_volume;
+			$order->expires = (string) $o->expires;
+			$order->reported_time = (string) $o->reported_time;
+			
+			$orders[] = $order;
+		}
+		
+		$quicklook->buy_orders->_content = $orders;
+		
+		$this->evec_api->_content = $quicklook;
+	}
+	
 }

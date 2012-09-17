@@ -37,5 +37,126 @@ namespace PHPEveCentral\Requests;
 
 class QuickLook extends \PHPEveCentral\Request
 {
+	// Public:
+	
+	public function __construct()
+	{
+		parent::__construct(\PHPEveCentral\BASEURL . 'quicklook');
+	}
+	
+	public function __get($name)
+	{
+		switch ($name)
+		{
+			case 'TypeId': case 'typeid':
+				return $this->_typeid;
+			case 'Hours': case 'hours': case 'sethours':
+				return $this->_hours;
+			case 'RegionLimit': case 'region_limit': case 'regionlimit':
+				return $this->_region_limit;
+			case 'UseSystem': case 'use_system': case 'usesystem':
+				return $this->_use_system;
+			case 'MinimumQuantity': case 'minimum_quantity': case 'minQ': case 'setminQ':
+				return $this->_minimum_quantity;
+		}
+	}
 
+	public function &SetTypeId($typeid)
+	{
+		$this->_typeid = $typeid;
+		
+		return $this;
+	}
+	
+	public function &SetHours($hours)
+	{
+		$this->_hours = $hours;
+		
+		return $this;
+	}
+	
+	public function &AddRegionLimit($region_limit)
+	{
+		$this->_region_limit[] = $region_limit;
+		
+		return $this;
+	}
+	
+	public function &RemoveRegionLimit($region_limit)
+	{
+		\PHPEveCentral\Utils::RemoveArrayValue($this->_region_limit, $region_limit);
+		
+		return $this;
+	}
+	
+	public function &SetUseSystem($use_system)
+	{
+		$this->_use_system = $use_system;
+		
+		return $this;
+	}
+	
+	public function &SetMinimumQuantity($mininum_quantity)
+	{
+		$this->_minimum_quantity = $minimum_quantity;
+		
+		return $this;
+	}
+	
+	
+	
+	// Protected:
+	
+	protected function BuildParams()
+	{
+		$params = array();
+		
+		if ($this->_typeid !== null)
+		{
+			$params['typeid'] = $this->_typeid;
+		}
+		else
+		{
+			throw new  \Exception('The typeid parameter is required.');
+		}
+		
+		if ($this->_hours !== null)
+		{
+			$params['hours'] = $this->_hours;
+		}
+		
+		if (count($this->_region_limit) > 0)
+		{
+			$params['regionlimit'] = $this->_region_limit;
+		}
+		
+		if ($this->_use_system !== null)
+		{
+			$params['usesystem'] = $this->_use_system;
+		}
+
+		if ($this->_minimum_quantity !== null)
+		{
+			$params['minQ'] = $this->_minimum_quantity;
+		}
+
+		return $params;
+	}
+	
+	protected function Parse($content)
+	{
+		return new \PHPEveCentral\Results\QuickLook(
+				new \PHPEveCentral\XMLParsers\QuickLook($content)
+			);
+	}
+
+	
+	
+	// Private:
+	
+	private $_typeid = null; // typeid
+	private $_hours = null; // sethours
+	private $_region_limit = array(); // regionlimit
+	private $_use_system = null; // usesystem
+	private $_minimum_quantity = null; // setminQ
 }

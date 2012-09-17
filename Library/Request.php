@@ -73,7 +73,7 @@ abstract class Request
 			CURLOPT_HEADER         => false,
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_ENCODING       => "",
-			CURLOPT_USERAGENT      => 'PHPEveCentral Library Version ' . \PHPEveCentral\VERSION,
+			CURLOPT_USERAGENT      => 'PHPEveCentral/' . \PHPEveCentral\VERSION,
 			CURLOPT_AUTOREFERER    => true,
 			CURLOPT_CONNECTTIMEOUT => 120,
 			CURLOPT_TIMEOUT        => 120,
