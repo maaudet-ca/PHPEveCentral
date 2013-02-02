@@ -74,7 +74,14 @@ class MarketStat extends \PHPEveCentral\Request
 	
 	public function &AddTypeId($typeid)
 	{
-		$this->_typeid[] = $typeid;
+        if(is_array($typeid))
+        {
+            array_merge($this->_typeid = $typeid);
+        }
+        else
+        {
+            $this->_typeid[] = $typeid;
+        }
 		
 		return $this;
 	}
