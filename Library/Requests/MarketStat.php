@@ -76,7 +76,7 @@ class MarketStat extends \PHPEveCentral\Request
 	{
         if(is_array($typeid))
         {
-            array_merge($this->_typeid, $typeid);
+            $this->_typeid = array_merge($this->_typeid, $typeid);
         }
         else
         {
