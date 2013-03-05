@@ -59,9 +59,19 @@ abstract class Request
 			}
 			else
 			{
+				$first = true;
 				foreach ($p as $v)
 				{
-					$query_string[] = $k . '=' . $v;
+					if($first)
+					{
+						$query_string[] = $k . '=' . $v;
+						$first = false;
+					}
+					else
+					{
+						$last = array_pop($query_string);
+						$query_string[] = $last.','.$v;
+					}
 				}
 			}
 		}
