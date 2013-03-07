@@ -76,8 +76,6 @@ abstract class Request
 			}
 		}
 		
-		$query = '?' . implode('&', $query_string);
-		
 		$options = array(
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_HEADER         => false,
@@ -89,8 +87,22 @@ abstract class Request
 			CURLOPT_TIMEOUT        => 120,
 			CURLOPT_MAXREDIRS      => 10,
 		);
-		
-		$ch = curl_init($url . $query);
+
+		if(preg_match('/(marketstat|quicklook)$/', $this->_url))
+		{
+			$postOptions = array(
+				CURLOPT_POST 		   => 1,
+				CURLOPT_POSTFIELDS         => implode('&', $query_string),
+			);
+			$options = $options + $postOptions;
+			$ch = curl_init($url);
+		}
+		else
+		{
+			$query = '?' . implode('&', $query_string);
+			$ch = curl_init($url . $query);
+		}
+
 		curl_setopt_array($ch, $options);
 		$content = curl_exec($ch);
 		
