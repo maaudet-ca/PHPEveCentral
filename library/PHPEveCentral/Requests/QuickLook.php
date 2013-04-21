@@ -40,24 +40,24 @@ use PHPEveCentral\Utils;
 
 
 /**
- * Class MarketStat
- * @package PHPEveCentral
+ * Class QuickLook
+ * @package PHPEveCentral\Requests
  */
-class MarketStat implements Request
+class QuickLook implements Request
 {
     private $url;
     private $hours = null;
-    private $typeid = [];
+    private $typeid = null;
     private $minimum_quantity = null;
     private $region_limit = [];
     private $use_system = null;
 
-    public function __construct($typeid = [])
+    public function __construct($typeid = null)
     {
-        $this->addTypeId($typeid);
+        $this->setTypeId($typeid);
 
         $phpevecentral = PHPEveCentral::getInstance();
-        $this->setURL($phpevecentral->getBaseURL() . 'marketstat');
+        $this->setURL($phpevecentral->getBaseURL() . 'quicklook');
     }
 
     /**
@@ -87,65 +87,15 @@ class MarketStat implements Request
     }
 
     /**
-     * The type ID of the item you are requesting. I.e., 34 for Tritanium. Can have more then 1.
-     * If you input an integer, it will append this value to the list.
-     * If you input an array, it will merge with the current list.
+     * The type ID to be queried
      *
-     * @param array|integer $typeid
+     * @param integer $typeid
      *
      * @return $this
      */
-    public function &addTypeId($typeid)
+    public function &setTypeId($typeid)
     {
-        if ($typeid === null)
-            return $this;
-
-        if (is_array($typeid))
-        {
-            if (count($typeid) <= 0)
-                return $this;
-
-            $this->typeid = array_merge($this->typeid, $typeid);
-        }
-        else
-        {
-            $this->typeid[] = $typeid;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove the type ID(s) from the list.
-     * If you input an integer, it will be removed from the list.
-     * If you input an array, all it's values will be removed from the list.
-     *
-     * @param array|integer $typeid
-     *
-     * @return $this
-     */
-    public function &removeTypeId($typeid)
-    {
-        if (is_array($typeid))
-        {
-            $this->typeid = Utils::removeArrayValues($this->typeid, $typeid);
-        }
-        else
-        {
-            $this->typeid = Utils::removeArrayValue($this->typeid, $typeid);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Clear the type ID list.
-     *
-     * @return $this
-     */
-    public function &clearTypeId()
-    {
-        $this->typeid = [];
+        $this->typeid = $typeid;
         return $this;
     }
 
@@ -241,21 +191,21 @@ class MarketStat implements Request
     /**
      * Send the request and return a result object.
      *
-     * @return \PHPEveCentral\Results\MarketStat
+     * @return \PHPEveCentral\Results\QuickLook
      *
-     * @throws \PHPEveCentral\Exceptions\MarketStatRequestException
+     * @throws \PHPEveCentral\Exceptions\QuickLookRequestException
      */
     public function send()
     {
         $content = Utils::sendCurlRequest($this->url, $this->buildParams(), true);
 
-        return new \PHPEveCentral\Results\MarketStat($content);
+        return new \PHPEveCentral\Results\QuickLook($content);
     }
 
     /**
      * @return array
      *
-     * @throws \PHPEveCentral\Exceptions\MarketStatRequestException
+     * @throws \PHPEveCentral\Exceptions\QuickLookRequestException
      */
     private function buildParams()
     {
@@ -266,15 +216,13 @@ class MarketStat implements Request
             $params['hours'] = $this->hours;
         }
 
-        $this->typeid = array_unique($this->typeid, SORT_NUMERIC);
-
-        if (count($this->typeid) > 0)
+        if ($this->typeid !== null)
         {
             $params['typeid'] = $this->typeid;
         }
         else
         {
-            throw new \PHPEveCentral\Exceptions\MarketStatRequestException('The typeid parameter is required.');
+            throw new \PHPEveCentral\Exceptions\QuickLookRequestException('The typeid parameter is required.');
         }
 
         if ($this->minimum_quantity !== null)

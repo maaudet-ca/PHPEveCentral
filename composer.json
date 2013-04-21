@@ -15,7 +15,12 @@
     "support": {
         "issues": "https://github.com/Manhim/PHPEveCentral/issues"
     },
+    "require": {
+        "php": ">=5.4.0"
+    },
     "autoload": {
-        "psr-0": { "PHPEveCentral": "library/" }
+        "psr-0": {
+            "PHPEveCentral": "library/"
+        }
     }
 }

@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  *
  * Copyright (c) 2013 Marc André "Manhim" Audet <root@manhim.net>. All rights reserved.

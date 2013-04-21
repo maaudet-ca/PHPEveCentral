@@ -34,10 +34,10 @@ namespace PHPEveCentral\Exceptions;
 
 
 /**
- * Class MarketStatRequestException
+ * Class QuickLookRequestException
  * @package PHPEveCentral\Exceptions
  */
-class MarketStatRequestException extends \Exception
+class QuickLookRequestException extends \Exception
 {
 
 }
