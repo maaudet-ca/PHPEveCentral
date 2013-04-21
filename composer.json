@@ -1,0 +1,21 @@
+{
+    "name": "Manhim/PHPEveCentral",
+    "description": "A simple to use API library for Eve-Central.",
+    "type": "library",
+    "keywords": ["EVE Online", "PHPEveCentral", "Eve Central"],
+    "homepage": "https://github.com/Manhim/PHPEveCentral",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Marc André Audet",
+            "email": "root@manhim.net",
+            "homepage": "http://manhim.net"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Manhim/PHPEveCentral/issues"
+    },
+    "autoload": {
+        "psr-0": { "PHPEveCentral": "library/" }
+    }
+}

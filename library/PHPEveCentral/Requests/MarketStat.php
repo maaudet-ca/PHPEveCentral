@@ -228,6 +228,13 @@ class MarketStat implements Request
         return $this;
     }
 
+    /**
+     * Send the request and return a result object.
+     *
+     * @return \PHPEveCentral\Results\MarketStat
+     *
+     * @throws \PHPEveCentral\Exceptions\MarketStatRequestException
+     */
     public function send()
     {
         $content = Utils::sendCurlRequest($this->url, $this->buildParams(), true);
@@ -235,6 +242,11 @@ class MarketStat implements Request
         return new \PHPEveCentral\Results\MarketStat($content);
     }
 
+    /**
+     * @return array
+     *
+     * @throws \PHPEveCentral\Exceptions\MarketStatRequestException
+     */
     private function buildParams()
     {
         $params = [];
@@ -252,7 +264,7 @@ class MarketStat implements Request
         }
         else
         {
-            throw new Exceptions\MarketStatRequestException('The typeid parameter is required.');
+            throw new \PHPEveCentral\Exceptions\MarketStatRequestException('The typeid parameter is required.');
         }
 
         if ($this->minimum_quantity !== null)
