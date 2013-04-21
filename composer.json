@@ -1,5 +1,5 @@
 {
-    "name": "Manhim/PHPEveCentral",
+    "name": "manhim/phpevecentral",
     "description": "A simple to use API library for Eve-Central.",
     "type": "library",
     "keywords": ["EVE Online", "PHPEveCentral", "Eve Central"],
