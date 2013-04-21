@@ -63,12 +63,12 @@ class PHPEveCentral
         return $this->baseurl;
     }
 
-    public function requestMarketStat($typeid = [])
+    public function MarketStat($typeid = [])
     {
         return new \PHPEveCentral\Requests\MarketStat($typeid);
     }
 
-    public function requestQuickLook($typeid = null)
+    public function QuickLook($typeid = null)
     {
         return new \PHPEveCentral\Requests\QuickLook($typeid);
     }
