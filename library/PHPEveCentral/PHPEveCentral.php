@@ -62,4 +62,14 @@ class PHPEveCentral
     {
         return $this->baseurl;
     }
+
+    public function requestMarketStat($typeid = [])
+    {
+        return new \PHPEveCentral\Requests\MarketStat($typeid);
+    }
+
+    public function requestQuickLook($typeid = null)
+    {
+        return new \PHPEveCentral\Requests\QuickLook($typeid);
+    }
 }
