@@ -47,12 +47,12 @@ class MarketStat implements Request
 {
     private $url;
     private $hours = null;
-    private $typeid = [];
+    private $typeid = array();
     private $minimum_quantity = null;
-    private $region_limit = [];
+    private $region_limit = array();
     private $use_system = null;
 
-    public function __construct($typeid = [])
+    public function __construct($typeid = array())
     {
         $this->addTypeId($typeid);
 
@@ -145,7 +145,7 @@ class MarketStat implements Request
      */
     public function &clearTypeId()
     {
-        $this->typeid = [];
+        $this->typeid = array();
         return $this;
     }
 
@@ -221,7 +221,7 @@ class MarketStat implements Request
      */
     public function &clearRegionLimit()
     {
-        $this->region_limit = [];
+        $this->region_limit = array();
         return $this;
     }
 
@@ -259,7 +259,7 @@ class MarketStat implements Request
      */
     private function buildParams()
     {
-        $params = [];
+        $params = array();
 
         if ($this->hours !== null)
         {

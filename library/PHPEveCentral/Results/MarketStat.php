@@ -46,7 +46,7 @@ class MarketStat implements Result
     protected $evec_method;
     protected $evec_version;
 
-    protected $types = [];
+    protected $types = array();
 
     public function __construct($input)
     {

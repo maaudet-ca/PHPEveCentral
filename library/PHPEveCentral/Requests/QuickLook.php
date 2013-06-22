@@ -49,7 +49,7 @@ class QuickLook implements Request
     private $hours = null;
     private $typeid = null;
     private $minimum_quantity = null;
-    private $region_limit = [];
+    private $region_limit = array();
     private $use_system = null;
 
     public function __construct($typeid = null)
@@ -171,7 +171,7 @@ class QuickLook implements Request
      */
     public function &clearRegionLimit()
     {
-        $this->region_limit = [];
+        $this->region_limit = array();
         return $this;
     }
 
@@ -209,7 +209,7 @@ class QuickLook implements Request
      */
     private function buildParams()
     {
-        $params = [];
+        $params = array();
 
         if ($this->hours !== null)
         {

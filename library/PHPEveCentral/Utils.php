@@ -57,7 +57,7 @@ class Utils
 
     static public function sendCurlRequest($url, $params, $is_post = false)
     {
-        $query_string = [];
+        $query_string = array();
 
         foreach ($params as $k => $p)
         {
