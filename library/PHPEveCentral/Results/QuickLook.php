@@ -47,8 +47,8 @@ class QuickLook implements Result
     protected $evec_version;
 
     protected $attributes;
-    protected $sell_orders = [];
-    protected $buy_orders = [];
+    protected $sell_orders = array();
+    protected $buy_orders = array();
 
     public function __construct($input)
     {
@@ -63,7 +63,7 @@ class QuickLook implements Result
         $this->attributes->hours = (int) $sxe->quicklook->hours;
         $this->attributes->minqty = (double) $sxe->quicklook->minqty;
 
-        $this->attributes->regions = [];
+        $this->attributes->regions = array();
 
         foreach ($sxe->quicklook->regions->region as $region)
         {

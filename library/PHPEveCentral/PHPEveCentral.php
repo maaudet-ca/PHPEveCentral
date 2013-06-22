@@ -63,7 +63,7 @@ class PHPEveCentral
         return $this->baseurl;
     }
 
-    public function MarketStat($typeid = [])
+    public function MarketStat($typeid = array())
     {
         return new \PHPEveCentral\Requests\MarketStat($typeid);
     }
