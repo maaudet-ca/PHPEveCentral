@@ -43,8 +43,40 @@ use PHPEveCentral\Result;
  */
 class History implements Result
 {
+    private $raw_json = array();
+    private $values = array();
+
     public function __construct($input)
     {
-        echo $input;
+        $data = json_decode($inpute, true);
+        $this->raw_json = $data;
+
+        $values = $data['values'];
+
+        foreach ($values as $v)
+        {
+            $add = new \stdClass;
+
+            $add->median = $v['median'];
+            $add->max = $v['max'];
+            $add->avg = $v['avg'];
+            $add->stdDev = $v['stdDev'];
+            $add->min = $v['min'];
+            $add->volume = $v['volume'];
+            $add->fivePercent = $v['fivePercent'];
+            $add->at = $v['at'];
+
+            $this->values[] = $add;
+        }
+    }
+
+    public function getValues()
+    {
+        return $this->values;
+    }
+
+    public function getRawJSON()
+    {
+        return $this->raw_json;
     }
 }
