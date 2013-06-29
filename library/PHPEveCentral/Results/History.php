@@ -29,52 +29,54 @@
 
 
 
-namespace PHPEveCentral;
+namespace PHPEveCentral\Results;
 
 
 
-class PHPEveCentral
+use PHPEveCentral\Result;
+
+
+
+/**
+ * Class History
+ * @package PHPEveCentral\Requests
+ */
+class History implements Result
 {
-    const VERSION = '1.0.0';
+    private $raw_json = array();
+    private $values = array();
 
-    static private $__instance = null;
-
-    private $baseurl = 'http://api.eve-central.com/api/';
-
-    static public function &getInstance()
+    public function __construct($input)
     {
-        if (self::$__instance === null)
-            self::$__instance = new self;
+        $data = json_decode($input, true);
+        $this->raw_json = $data;
 
-        return self::$__instance;
+        $values = $data['values'];
+
+        foreach ($values as $v)
+        {
+            $add = new \stdClass;
+
+            $add->median = (double) $v['median'];
+            $add->max = (double) $v['max'];
+            $add->avg = (double) $v['avg'];
+            $add->stdDev = (double) $v['stdDev'];
+            $add->min = (double) $v['min'];
+            $add->volume = (double) $v['volume'];
+            $add->fivePercent = (double) $v['fivePercent'];
+            $add->at = strtotime($v['at']);
+
+            $this->values[] = $add;
+        }
     }
 
-    private function __construct() { }
-    private final function __clone() { }
-
-    public function &setBaseURL($baseurl)
+    public function getValues()
     {
-        $this->baseurl = $baseurl;
-        return $this;
+        return $this->values;
     }
 
-    public function getBaseURL()
+    public function getRawJSON()
     {
-        return $this->baseurl;
-    }
-
-    public function MarketStat($typeid = array())
-    {
-        return new \PHPEveCentral\Requests\MarketStat($typeid);
-    }
-
-    public function QuickLook($typeid = null)
-    {
-        return new \PHPEveCentral\Requests\QuickLook($typeid);
-    }
-
-    public function History($type, $locale, $name, $bid)
-    {
-        return new \PHPEveCentral\Requests\History($type, $locale, $name, $bid);
+        return $this->raw_json;
     }
 }
