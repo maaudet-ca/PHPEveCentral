@@ -72,4 +72,9 @@ class PHPEveCentral
     {
         return new \PHPEveCentral\Requests\QuickLook($typeid);
     }
+
+    public function History($type, $locale, $name, $bid)
+    {
+        return new \PHPEveCentral\Requests\History($type, $locale, $name, $bid);
+    }
 }
