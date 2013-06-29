@@ -48,7 +48,7 @@ class History implements Result
 
     public function __construct($input)
     {
-        $data = json_decode($inpute, true);
+        $data = json_decode($input, true);
         $this->raw_json = $data;
 
         $values = $data['values'];
@@ -57,14 +57,14 @@ class History implements Result
         {
             $add = new \stdClass;
 
-            $add->median = $v['median'];
-            $add->max = $v['max'];
-            $add->avg = $v['avg'];
-            $add->stdDev = $v['stdDev'];
-            $add->min = $v['min'];
-            $add->volume = $v['volume'];
-            $add->fivePercent = $v['fivePercent'];
-            $add->at = $v['at'];
+            $add->median = (double) $v['median'];
+            $add->max = (double) $v['max'];
+            $add->avg = (double) $v['avg'];
+            $add->stdDev = (double) $v['stdDev'];
+            $add->min = (double) $v['min'];
+            $add->volume = (double) $v['volume'];
+            $add->fivePercent = (double) $v['fivePercent'];
+            $add->at = strtotime($v['at']);
 
             $this->values[] = $add;
         }
