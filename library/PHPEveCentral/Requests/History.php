@@ -145,7 +145,7 @@ class History implements Request
     {
         $url = $this->url . '/' . $this->type . '/' . $this->locale . '/' . urlencode($this->name) . '/bid/' . $this->bid;
 
-        $content = Utils::sendCurlRequest($url, array(), true);
+        $content = Utils::sendCurlRequest($url, array(), false);
 
         return new \PHPEveCentral\Results\History($content);
     }
