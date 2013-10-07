@@ -213,7 +213,7 @@ class QuickLook implements Request
 
         if ($this->hours !== null)
         {
-            $params['hours'] = $this->hours;
+            $params['sethours'] = $this->hours;
         }
 
         if ($this->typeid !== null)
@@ -227,7 +227,7 @@ class QuickLook implements Request
 
         if ($this->minimum_quantity !== null)
         {
-            $params['minQ'] = $this->minimum_quantity;
+            $params['setminQ'] = $this->minimum_quantity;
         }
 
         $this->region_limit = array_unique($this->region_limit, SORT_NUMERIC);
