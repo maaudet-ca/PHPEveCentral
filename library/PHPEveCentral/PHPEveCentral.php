@@ -35,7 +35,7 @@ namespace PHPEveCentral;
 
 class PHPEveCentral
 {
-    const VERSION = '1.0.4';
+    const VERSION = '1.0.5';
 
     static private $__instance = null;
 

@@ -85,10 +85,10 @@ class Utils
 
         if ($is_post)
         {
-            $post_options = [
+            $post_options = array(
                 CURLOPT_POST        => true,
                 CURLOPT_POSTFIELDS  => implode('&', $query_string)
-            ];
+            );
 
             $options = $options + $post_options;
 
